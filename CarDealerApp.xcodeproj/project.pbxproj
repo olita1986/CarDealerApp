@@ -34,6 +34,14 @@
 		8E0658D723804CD9006334CF /* CommonListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E0658D523804CD9006334CF /* CommonListViewController.xib */; };
 		8E0658D92380553C006334CF /* ManufacturerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0658D82380553C006334CF /* ManufacturerModel.swift */; };
 		8E0658DB2380583D006334CF /* CommonInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0658DA2380583D006334CF /* CommonInteractor.swift */; };
+		8E0658E1238060DA006334CF /* ManufacturerViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0658DD238060DA006334CF /* ManufacturerViewControllerTests.swift */; };
+		8E0658E2238060DA006334CF /* ManufacturerInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0658DE238060DA006334CF /* ManufacturerInteractorTests.swift */; };
+		8E0658E3238060DA006334CF /* ManufacturerWorkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0658DF238060DA006334CF /* ManufacturerWorkerTests.swift */; };
+		8E0658E4238060DA006334CF /* ManufacturerPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0658E0238060DA006334CF /* ManufacturerPresenterTests.swift */; };
+		8E0658E72380611A006334CF /* ManufacturerBusinessLogicSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0658E62380611A006334CF /* ManufacturerBusinessLogicSpy.swift */; };
+		8E0658E9238061B4006334CF /* ManufacturerPresentationLogicSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0658E8238061B4006334CF /* ManufacturerPresentationLogicSpy.swift */; };
+		8E0658EB23806242006334CF /* ManufacturerDisplayLogicSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0658EA23806242006334CF /* ManufacturerDisplayLogicSpy.swift */; };
+		8E0658ED238062C2006334CF /* ManufacturerWorkerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0658EC238062C2006334CF /* ManufacturerWorkerSpy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +86,14 @@
 		8E0658D523804CD9006334CF /* CommonListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommonListViewController.xib; sourceTree = "<group>"; };
 		8E0658D82380553C006334CF /* ManufacturerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManufacturerModel.swift; sourceTree = "<group>"; };
 		8E0658DA2380583D006334CF /* CommonInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonInteractor.swift; sourceTree = "<group>"; };
+		8E0658DD238060DA006334CF /* ManufacturerViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManufacturerViewControllerTests.swift; sourceTree = "<group>"; };
+		8E0658DE238060DA006334CF /* ManufacturerInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManufacturerInteractorTests.swift; sourceTree = "<group>"; };
+		8E0658DF238060DA006334CF /* ManufacturerWorkerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManufacturerWorkerTests.swift; sourceTree = "<group>"; };
+		8E0658E0238060DA006334CF /* ManufacturerPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManufacturerPresenterTests.swift; sourceTree = "<group>"; };
+		8E0658E62380611A006334CF /* ManufacturerBusinessLogicSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManufacturerBusinessLogicSpy.swift; sourceTree = "<group>"; };
+		8E0658E8238061B4006334CF /* ManufacturerPresentationLogicSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManufacturerPresentationLogicSpy.swift; sourceTree = "<group>"; };
+		8E0658EA23806242006334CF /* ManufacturerDisplayLogicSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManufacturerDisplayLogicSpy.swift; sourceTree = "<group>"; };
+		8E0658EC238062C2006334CF /* ManufacturerWorkerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManufacturerWorkerSpy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +150,7 @@
 		8E06589323801344006334CF /* CarDealerAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				8E0658DC238060BA006334CF /* Scenes */,
 				8E06589623801344006334CF /* Info.plist */,
 			);
 			path = CarDealerAppTests;
@@ -229,6 +246,29 @@
 				8E0658D523804CD9006334CF /* CommonListViewController.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		8E0658DC238060BA006334CF /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				8E0658E5238060DF006334CF /* Spies */,
+				8E0658DD238060DA006334CF /* ManufacturerViewControllerTests.swift */,
+				8E0658DE238060DA006334CF /* ManufacturerInteractorTests.swift */,
+				8E0658DF238060DA006334CF /* ManufacturerWorkerTests.swift */,
+				8E0658E0238060DA006334CF /* ManufacturerPresenterTests.swift */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		8E0658E5238060DF006334CF /* Spies */ = {
+			isa = PBXGroup;
+			children = (
+				8E0658E62380611A006334CF /* ManufacturerBusinessLogicSpy.swift */,
+				8E0658E8238061B4006334CF /* ManufacturerPresentationLogicSpy.swift */,
+				8E0658EA23806242006334CF /* ManufacturerDisplayLogicSpy.swift */,
+				8E0658EC238062C2006334CF /* ManufacturerWorkerSpy.swift */,
+			);
+			path = Spies;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -363,6 +403,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E0658EB23806242006334CF /* ManufacturerDisplayLogicSpy.swift in Sources */,
+				8E0658ED238062C2006334CF /* ManufacturerWorkerSpy.swift in Sources */,
+				8E0658E1238060DA006334CF /* ManufacturerViewControllerTests.swift in Sources */,
+				8E0658E2238060DA006334CF /* ManufacturerInteractorTests.swift in Sources */,
+				8E0658E9238061B4006334CF /* ManufacturerPresentationLogicSpy.swift in Sources */,
+				8E0658E4238060DA006334CF /* ManufacturerPresenterTests.swift in Sources */,
+				8E0658E3238060DA006334CF /* ManufacturerWorkerTests.swift in Sources */,
+				8E0658E72380611A006334CF /* ManufacturerBusinessLogicSpy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

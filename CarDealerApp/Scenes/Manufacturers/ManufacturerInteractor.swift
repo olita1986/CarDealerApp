@@ -81,14 +81,17 @@ class ManufacturerInteractor: CommonInteractor, ManufacturerBusinessLogic, Manuf
 
     func getModels(request: Manufacturer.Models.Request) {
         manufacturer = request.manufacturer.name
+        presenter?.presentLoading()
         worker.getModels(
             withPage: "0",
             manufacturerId: request.manufacturer.id,
             onSuccess: { [unowned self] response in
+                self.presenter?.dismissLoading()
                 self.modelsResponse = response
                 self.presenter?.presentModels()
             },
             onError:  { (error) in
+                self.presenter?.dismissLoading()
                 self.isLoadingManufacters = false
                 switch error {
                 case .generalError:
