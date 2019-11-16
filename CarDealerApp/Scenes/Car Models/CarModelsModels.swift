@@ -1,5 +1,5 @@
 //
-//  ManufacturerModels.swift
+//  CarModelsModels.swift
 //  CarDealerApp
 //
 //  Created by Nisum on 11/16/19.
@@ -12,28 +12,23 @@
 
 import UIKit
 
-enum Manufacturer {
+enum CarModels {
     // MARK: Use cases
 
-    enum Manufacturer {
+    enum CarModel {
         struct Request {
-            var page: String
         }
         struct Response {
             var carDealerResponse: CarDealerResponse
             var indexPathsToReload: [IndexPath]
             var addLoadingRow: Bool
+            var title: String 
         }
         struct ViewModel {
-            var manufacturers: [ManufacturerModel]
+            var models: [String]
             var indexPathsToReload: [IndexPath]?
             var loadingRowCount: Int
-        }
-    }
-
-    enum Models {
-        struct Request {
-            var manufacturer: ManufacturerModel
+            var title: String?
         }
     }
 }

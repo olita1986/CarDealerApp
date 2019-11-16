@@ -27,7 +27,9 @@ class UrlSessionClient: Client {
 
             do {
                 let decodedObject = try JSONDecoder().decode(T.self, from: data)
-                onSuccess(decodedObject)
+                DispatchQueue.main.async {
+                    onSuccess(decodedObject)
+                }
             } catch let error {
                 print(error.localizedDescription)
                 onError(.generalError)

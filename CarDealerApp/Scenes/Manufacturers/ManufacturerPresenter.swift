@@ -16,6 +16,7 @@ protocol ManufacturerPresentationLogic {
     func presentLoading()
     func dismissLoading()
     func presentView(response: Manufacturer.Manufacturer.Response)
+    func presentModels()
 }
 
 class ManufacturerPresenter: ManufacturerPresentationLogic {
@@ -30,6 +31,21 @@ class ManufacturerPresenter: ManufacturerPresentationLogic {
     }
 
     func presentView(response: Manufacturer.Manufacturer.Response) {
-        
+        let manufacturers = response.carDealerResponse.wkda.map {
+            ManufacturerModel(id: $0.key, name: $0.value)
+        }
+
+        let viewModel = Manufacturer.Manufacturer.ViewModel(
+            manufacturers: manufacturers,
+            indexPathsToReload: response.indexPathsToReload.count == 0 ?
+            nil : response.indexPathsToReload,
+            loadingRowCount: response.addLoadingRow ? 1 : 0
+        )
+
+        viewController?.displayView(viewModel: viewModel)
+    }
+
+    func presentModels() {
+        viewController?.displayModels()
     }
 }

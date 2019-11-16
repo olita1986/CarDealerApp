@@ -1,5 +1,5 @@
 //
-//  ManufacturerRouter.swift
+//  CarModelsRouter.swift
 //  CarDealerApp
 //
 //  Created by Nisum on 11/16/19.
@@ -12,27 +12,19 @@
 
 import UIKit
 
-@objc protocol ManufacturerRoutingLogic {
-    func routeToModelViewController()
+@objc protocol CarModelsRoutingLogic {
+    //func routeToSomewhere(segue: UIStoryboardSegue?)
 }
 
-protocol ManufacturerDataPassing {
-    var dataStore: ManufacturerDataStore? { get }
+protocol CarModelsDataPassing {
+    var dataStore: CarModelsDataStore? { get }
 }
 
-class ManufacturerRouter: NSObject, ManufacturerRoutingLogic, ManufacturerDataPassing {
-    weak var viewController: ManufacturerViewController?
-    var dataStore: ManufacturerDataStore?
+class CarModelsRouter: NSObject, CarModelsRoutingLogic, CarModelsDataPassing {
+    weak var viewController: CarModelsViewController?
+    var dataStore: CarModelsDataStore?
 
     // MARK: Routing
-
-    func routeToModelViewController() {
-        let destinationVC = CarModelsViewController()
-        var destinationDS = destinationVC.router!.dataStore!
-        destinationDS.modelsResponse = dataStore!.modelsResponse
-        destinationDS.manufacturer = dataStore!.manufacturer
-        viewController?.navigationController?.pushViewController(destinationVC, animated: true)
-    }
 
     //func routeToSomewhere(segue: UIStoryboardSegue?)
     //{
@@ -51,14 +43,14 @@ class ManufacturerRouter: NSObject, ManufacturerRoutingLogic, ManufacturerDataPa
 
     // MARK: Navigation
 
-    //func navigateToSomewhere(source: ManufacturerViewController, destination: SomewhereViewController)
+    //func navigateToSomewhere(source: CarModelsViewController, destination: SomewhereViewController)
     //{
     //  source.show(destination, sender: nil)
     //}
 
     // MARK: Passing data
 
-    //func passDataToSomewhere(source: ManufacturerDataStore, destination: inout SomewhereDataStore)
+    //func passDataToSomewhere(source: CarModelsDataStore, destination: inout SomewhereDataStore)
     //{
     //  destination.name = source.name
     //}

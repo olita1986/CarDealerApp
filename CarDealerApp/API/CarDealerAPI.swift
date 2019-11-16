@@ -16,7 +16,7 @@ class CarDealerAPI: CarDealerAPIService {
     }
 
     func getManufacturers(withPage page: String, onSuccess: @escaping ((CarDealerResponse) -> Void), onError: @escaping ((CarDealerError) -> Void)) {
-        let formattedURLString = String(format: CarDealerConstants.API.manufacturersURL, 0)
+        let formattedURLString = String(format: CarDealerConstants.API.manufacturersURL, page)
         let url = URL(string: formattedURLString)!
 
         client.genericRequest(withType: CarDealerResponse.self, url: url, onSuccess: onSuccess, onError: onError)

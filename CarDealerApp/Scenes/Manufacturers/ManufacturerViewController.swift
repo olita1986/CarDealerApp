@@ -16,16 +16,19 @@ protocol ManufacturerDisplayLogic: class {
     func displayLoading()
     func dismissLoading()
     func displayView(viewModel: Manufacturer.Manufacturer.ViewModel)
+    func displayModels()
 }
 
-class ManufacturerViewController: UIViewController, ManufacturerDisplayLogic {
+class ManufacturerViewController: CommonListViewController, ManufacturerDisplayLogic {
     var interactor: ManufacturerBusinessLogic?
     var router: (NSObjectProtocol & ManufacturerRoutingLogic & ManufacturerDataPassing)?
 
+    var manufacturers:[ManufacturerModel] = []
+
     // MARK: Object lifecycle
 
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    override init() {
+        super.init()
         setup()
     }
 
@@ -53,8 +56,14 @@ class ManufacturerViewController: UIViewController, ManufacturerDisplayLogic {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let request = Manufacturer.Manufacturer.Request(page: "0")
-        interactor?.getManufacturers(request: request)
+        setupViews()
+        interactor?.getManufacturers()
+    }
+
+    private func setupViews() {
+        title = "Manufacturers"
+        dataTableView.prefetchDataSource = self
+        dataTableView.delegate = self
     }
 
     // MARK: - VIP methods
@@ -68,6 +77,31 @@ class ManufacturerViewController: UIViewController, ManufacturerDisplayLogic {
     }
 
     func displayView(viewModel: Manufacturer.Manufacturer.ViewModel) {
+        manufacturers += viewModel.manufacturers
+        loadingRowCount = viewModel.loadingRowCount
+        carModels += viewModel.manufacturers.map{ $0.name }
+        guard let indexPaths = viewModel.indexPathsToReload else {
+            return
+        }
+        let indexPathToReload = visibleIndexPathsToReload(intersecting: indexPaths)
+        dataTableView.reloadRows(at: indexPathToReload, with: .automatic)
+    }
 
+    func displayModels() {
+        router?.routeToModelViewController()
+    }
+}
+
+extension ManufacturerViewController: UITableViewDataSourcePrefetching, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        if indexPaths.contains(where: isLoadingCell) {
+            interactor?.getManufacturers()
+        }
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let manufacturer = manufacturers[indexPath.row]
+        let request = Manufacturer.Models.Request(manufacturer: manufacturer)
+        interactor?.getModels(request: request)
     }
 }

@@ -1,5 +1,5 @@
 //
-//  ManufacturerInteractor.swift
+//  CarModelsInteractor.swift
 //  CarDealerApp
 //
 //  Created by Nisum on 11/16/19.
@@ -12,26 +12,35 @@
 
 import UIKit
 
-protocol ManufacturerBusinessLogic {
-    func getManufacturers()
-    func getModels(request: Manufacturer.Models.Request)
+protocol CarModelsBusinessLogic {
+    func getInitialModels()
+    func getMoreModels()
 }
 
-protocol ManufacturerDataStore {
-    var modelsResponse: CarDealerResponse? { get set }
+protocol CarModelsDataStore {
+    var modelsResponse: CarDealerResponse! { get set }
     var manufacturer: String { get set }
 }
 
-class ManufacturerInteractor: CommonInteractor, ManufacturerBusinessLogic, ManufacturerDataStore {
-    var presenter: ManufacturerPresentationLogic?
-    var worker = ManufacturerWorker()
+class CarModelsInteractor: CommonInteractor, CarModelsBusinessLogic, CarModelsDataStore {
+    var presenter: CarModelsPresentationLogic?
+    var worker = CarModelsWorker()
 
-    var modelsResponse: CarDealerResponse?
+    var modelsResponse: CarDealerResponse!
     var manufacturer: String = ""
 
-    private var rawManufacturers: [String: String] = [:]
+    func getInitialModels() {
+        self.currentPage += 1
+        let response = CarModels.CarModel.Response(
+            carDealerResponse: modelsResponse,
+            indexPathsToReload: [],
+            addLoadingRow: false,
+            title: manufacturer
+        )
+        presenter?.presentView(response: response)
+    }
 
-    func getManufacturers() {
+    func getMoreModels() {
         if totalPageCount > 0 {
             if currentPage > totalPageCount - 1 {
                 return
@@ -40,53 +49,35 @@ class ManufacturerInteractor: CommonInteractor, ManufacturerBusinessLogic, Manuf
         guard !isLoadingManufacters else {
             return
         }
-        isLoadingManufacters = true
-        worker.getManufacturers(
-            withPage: String(currentPage),
+        worker.getModels(
+            withPage: "0",
+            manufacturerId: manufacturer,
             onSuccess: { [unowned self] response in
-                self.rawManufacturers = response.wkda
                 self.currentPage += 1
                 self.isLoadingManufacters = false
                 self.totalPageCount = response.totalPageCount
                 self.currentManufacturersCount += response.wkda.count
+                self.modelsResponse = response
                 if response.page > 0 {
                     let indexPathsToReload = self.calculateIndexPathsToReload(
                         from: response.wkda.count
                     )
-                    let response = Manufacturer.Manufacturer.Response(
+                    let response = CarModels.CarModel.Response(
                         carDealerResponse: response,
                         indexPathsToReload: indexPathsToReload,
-                        addLoadingRow: response.page < response.totalPageCount - 1
+                        addLoadingRow: response.page < response.totalPageCount - 1,
+                        title: ""
                     )
                     self.presenter?.presentView(response: response)
                 } else {
-                    let response = Manufacturer.Manufacturer.Response(
+                    let response = CarModels.CarModel.Response(
                         carDealerResponse: response,
                         indexPathsToReload: [],
-                        addLoadingRow: true
+                        addLoadingRow: true,
+                        title: ""
                     )
                     self.presenter?.presentView(response: response)
                 }
-            },
-            onError:  {[unowned self] error in
-                self.isLoadingManufacters = false
-                switch error {
-                case .generalError:
-                    print("Something went wrong")
-                case .noCars:
-                    print("There are no manufacturers")
-                }
-            })
-    }
-
-    func getModels(request: Manufacturer.Models.Request) {
-        manufacturer = request.manufacturer.name
-        worker.getModels(
-            withPage: "0",
-            manufacturerId: request.manufacturer.id,
-            onSuccess: { [unowned self] response in
-                self.modelsResponse = response
-                self.presenter?.presentModels()
             },
             onError:  { (error) in
                 self.isLoadingManufacters = false
