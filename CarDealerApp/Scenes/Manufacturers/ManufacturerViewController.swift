@@ -61,7 +61,7 @@ class ManufacturerViewController: CommonListViewController, ManufacturerDisplayL
     }
 
     private func setupViews() {
-        title = "Manufacturers"
+        title = CarDealerConstants.ViewTitle.manufacturerViewTitle
         dataTableView.prefetchDataSource = self
         dataTableView.delegate = self
     }
@@ -69,11 +69,11 @@ class ManufacturerViewController: CommonListViewController, ManufacturerDisplayL
     // MARK: - VIP methods
 
     func displayLoading() {
-
+        title = CarDealerConstants.ViewTitle.loadingViewTitle
     }
 
     func dismissLoading() {
-
+        title = CarDealerConstants.ViewTitle.manufacturerViewTitle
     }
 
     func displayView(viewModel: Manufacturer.Manufacturer.ViewModel) {

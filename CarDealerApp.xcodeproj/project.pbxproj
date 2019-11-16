@@ -42,6 +42,7 @@
 		8E0658E9238061B4006334CF /* ManufacturerPresentationLogicSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0658E8238061B4006334CF /* ManufacturerPresentationLogicSpy.swift */; };
 		8E0658EB23806242006334CF /* ManufacturerDisplayLogicSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0658EA23806242006334CF /* ManufacturerDisplayLogicSpy.swift */; };
 		8E0658ED238062C2006334CF /* ManufacturerWorkerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0658EC238062C2006334CF /* ManufacturerWorkerSpy.swift */; };
+		8E0658EF23806C85006334CF /* ManufacturerRoutingLogicSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0658EE23806C85006334CF /* ManufacturerRoutingLogicSpy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +95,7 @@
 		8E0658E8238061B4006334CF /* ManufacturerPresentationLogicSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManufacturerPresentationLogicSpy.swift; sourceTree = "<group>"; };
 		8E0658EA23806242006334CF /* ManufacturerDisplayLogicSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManufacturerDisplayLogicSpy.swift; sourceTree = "<group>"; };
 		8E0658EC238062C2006334CF /* ManufacturerWorkerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManufacturerWorkerSpy.swift; sourceTree = "<group>"; };
+		8E0658EE23806C85006334CF /* ManufacturerRoutingLogicSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManufacturerRoutingLogicSpy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,6 +269,7 @@
 				8E0658E8238061B4006334CF /* ManufacturerPresentationLogicSpy.swift */,
 				8E0658EA23806242006334CF /* ManufacturerDisplayLogicSpy.swift */,
 				8E0658EC238062C2006334CF /* ManufacturerWorkerSpy.swift */,
+				8E0658EE23806C85006334CF /* ManufacturerRoutingLogicSpy.swift */,
 			);
 			path = Spies;
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 				8E0658E1238060DA006334CF /* ManufacturerViewControllerTests.swift in Sources */,
 				8E0658E2238060DA006334CF /* ManufacturerInteractorTests.swift in Sources */,
 				8E0658E9238061B4006334CF /* ManufacturerPresentationLogicSpy.swift in Sources */,
+				8E0658EF23806C85006334CF /* ManufacturerRoutingLogicSpy.swift in Sources */,
 				8E0658E4238060DA006334CF /* ManufacturerPresenterTests.swift in Sources */,
 				8E0658E3238060DA006334CF /* ManufacturerWorkerTests.swift in Sources */,
 				8E0658E72380611A006334CF /* ManufacturerBusinessLogicSpy.swift in Sources */,

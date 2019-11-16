@@ -118,6 +118,34 @@ class ManufacturerViewControllerTests: XCTestCase {
         XCTAssertTrue(interactorSpy.getManufacturersCalled)
     }
 
+    func testDisplayLoading() {
+        // When
+        sut.displayLoading()
+
+        // Then
+        XCTAssertEqual(sut.title, CarDealerConstants.ViewTitle.loadingViewTitle)
+    }
+
+    func testDismissLoading() {
+        // When
+        sut.dismissLoading()
+
+        // Then
+        XCTAssertEqual(sut.title, CarDealerConstants.ViewTitle.manufacturerViewTitle)
+    }
+
+    func testDisplayModels() {
+        // Given
+        let routerSpy = ManufacturerRoutingLogicSpy()
+        sut.router = routerSpy
+
+        // When
+        sut.displayModels()
+
+        // Then
+        XCTAssertTrue(routerSpy.routeToModelViewControllerCalled)
+    }
+
     // Mock Table View
 
     class DataTableViewSpy: UITableView {
