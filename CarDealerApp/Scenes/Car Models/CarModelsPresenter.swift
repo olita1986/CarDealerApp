@@ -14,6 +14,7 @@ import UIKit
 
 protocol CarModelsPresentationLogic {
     func presentView(response: CarModels.CarModel.Response)
+    func presentSelection(response: CarModels.Alert.Response)
 }
 
 class CarModelsPresenter: CarModelsPresentationLogic {
@@ -32,5 +33,13 @@ class CarModelsPresenter: CarModelsPresentationLogic {
         )
 
         viewController?.displayView(viewModel: viewModel)
+    }
+
+    func presentSelection(response: CarModels.Alert.Response) {
+        let viewModel = CarModels.Alert.ViewModel(
+            title: response.title,
+            message: response.message
+        )
+        viewController?.displayAlert(viewModel: viewModel)
     }
 }

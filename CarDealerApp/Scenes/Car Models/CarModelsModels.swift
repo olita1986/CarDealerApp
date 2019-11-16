@@ -17,6 +17,7 @@ enum CarModels {
 
     enum CarModel {
         struct Request {
+            var model: String
         }
         struct Response {
             var carDealerResponse: CarDealerResponse
@@ -29,6 +30,20 @@ enum CarModels {
             var indexPathsToReload: [IndexPath]?
             var loadingRowCount: Int
             var title: String?
+        }
+    }
+
+    enum Alert {
+        struct Request {
+            
+        }
+        struct Response {
+            var title: String
+            var message: String
+        }
+        struct ViewModel {
+            var title: String
+            var message: String
         }
     }
 }

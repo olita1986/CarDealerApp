@@ -15,6 +15,7 @@ import UIKit
 protocol CarModelsBusinessLogic {
     func getInitialModels()
     func getMoreModels()
+    func modelSelected(request: CarModels.CarModel.Request)
 }
 
 protocol CarModelsDataStore {
@@ -89,5 +90,13 @@ class CarModelsInteractor: CommonInteractor, CarModelsBusinessLogic, CarModelsDa
                 }
             }
         )
+    }
+
+    func modelSelected(request: CarModels.CarModel.Request) {
+        let response = CarModels.Alert.Response(
+            title: manufacturer,
+            message: request.model
+        )
+        self.presenter?.presentSelection(response: response)
     }
 }

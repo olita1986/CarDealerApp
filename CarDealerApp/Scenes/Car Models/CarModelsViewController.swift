@@ -14,6 +14,7 @@ import UIKit
 
 protocol CarModelsDisplayLogic: class {
     func displayView(viewModel: CarModels.CarModel.ViewModel)
+    func displayAlert(viewModel: CarModels.Alert.ViewModel)
 }
 
 class CarModelsViewController: CommonListViewController, CarModelsDisplayLogic {
@@ -52,6 +53,8 @@ class CarModelsViewController: CommonListViewController, CarModelsDisplayLogic {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.getInitialModels()
+        dataTableView.delegate = self
+        dataTableView.prefetchDataSource = self
     }
 
     // MARK: - VIP Methods
@@ -61,6 +64,16 @@ class CarModelsViewController: CommonListViewController, CarModelsDisplayLogic {
         if let title = viewModel.title {
             self.title = title
         }
+    }
+
+    func displayAlert(viewModel: CarModels.Alert.ViewModel) {
+        let alert = UIAlertController(
+            title: viewModel.title,
+            message: viewModel.message,
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 }
 
@@ -72,8 +85,8 @@ extension CarModelsViewController: UITableViewDataSourcePrefetching, UITableView
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let manufacturer = carModels[indexPath.row]
-//        let request = Manufacturer.Models.Request(manufacturer: manufacturer.id)
-//        interactor?.getModels(request: request)
+        let model = carModels[indexPath.row]
+        let request = CarModels.CarModel.Request(model: model)
+        interactor?.modelSelected(request: request)
     }
 }
